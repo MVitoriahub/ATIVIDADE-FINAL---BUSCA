@@ -31,3 +31,19 @@
 └── main.py
 ```
 
+
+## Implementação
+
+- **Ações:** nomeadas pelo movimento do espaço vazio (`UP`, `DOWN`, `LEFT`, `RIGHT`), custo 1 por movimento.
+- **BFS:** fila FIFO + conjunto de estados alcançados; teste de objetivo na geração. Ótima (menor nº de movimentos).
+- **DFS:** pilha LIFO com limite de profundidade (padrão 50); um estado só é revisitado se alcançado por caminho mais curto. Não é ótima.
+- **A\*:** `f(n) = g(n) + h(n)` com heurística da **distância de Manhattan** (admissível e consistente). Ótima.
+- **Solubilidade:** `State.is_solvable` verifica a paridade das inversões; estados insolúveis retornam "não encontrado" imediatamente.
+  O exemplo original do `main.py` `(2, 8, 3, 1, 6, 4, 7, 0, 5)` é insolúvel para o objetivo `1 2 3 / 4 5 6 / 7 8 _`.
+
+## Executar
+
+```bash
+python main.py
+python -m pytest -q
+```

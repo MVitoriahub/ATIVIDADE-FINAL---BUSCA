@@ -20,12 +20,21 @@ def print_result(name: str, result):
     print(f"Fronteira : {result.max_frontier_size} (máx)")
 
 
-if __name__ == "__main__":
-    initial = State((2, 8, 3, 1, 6, 4, 7, 0, 5))   # ~20 movimentos até a solução
-
-    print("Estado inicial:")
+def run(initial: State):
+    print("\nEstado inicial:")
     print(initial)
+    if not initial.is_solvable:
+        print("(estado insolúvel para o objetivo 1 2 3 / 4 5 6 / 7 8 _)")
 
     print_result("BFS",  BFS().search(initial))
     print_result("DFS",  DFS().search(initial))
     print_result("A*",   AStar().search(initial))
+
+
+if __name__ == "__main__":
+    # Exemplo original do template: tem número ímpar de inversões, portanto
+    # é insolúvel para GOAL_STATE = (1, 2, 3, 4, 5, 6, 7, 8, 0).
+    run(State((2, 8, 3, 1, 6, 4, 7, 0, 5)))
+
+    # Exemplo solúvel (solução ótima com 20 movimentos)
+    run(State((2, 5, 3, 8, 6, 7, 4, 1, 0)))
